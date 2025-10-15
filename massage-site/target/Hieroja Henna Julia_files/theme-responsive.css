@@ -1,0 +1,624 @@
+/******************************
+** Header CSS
+******************************/
+.header {
+	padding: 20px 0 0;
+}
+.header .flex-box {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+.site-logo {
+	margin: 0 0 20px;
+	text-align: center;
+}
+.head-right {
+	margin: 0 5px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Mobile Portrait View */
+
+@media screen and (max-width: 479px) {
+    * {
+        box-sizing: border-box;
+    }
+    .container {
+        width: 95%;
+		display: inherit !important;
+    }
+
+	.header .flex-box {
+		flex-direction: column;
+		padding-bottom: 15px;
+	}
+
+    /******************************
+    ** Navigation CSS
+    ******************************/
+	#navigation{
+		background-color: transparent !important;
+		margin-bottom: 10px;
+	}
+    .toggle {
+        display: block;
+    }
+    .toggle a {
+        width: 100%;
+        color: #ffffff;
+        background: url(../images/mobile_nav_right.png) no-repeat right center #373a3f;
+        padding: 10px 10px;
+        margin-top: 20px;
+        font-size: 16px;
+    }
+    .toggle a:hover {
+        color: #ffffff !important;
+    }
+    .toggle a.active {
+        color: #ffffff;
+    }
+    .sitenav {
+        display: none;
+		margin-top:0;
+		width:100%;
+    }
+    .sitenav ul {
+        background: #000000;
+        color: #000;
+        width: 100%;
+        float: none;
+        margin-top: 0;
+    }
+    .sitenav ul li {
+        border-top: 1px #303030 solid;
+        display: block;
+        float: none;
+        text-align: left;
+    }
+	.sitenav ul li ul {
+		color: #fff;
+		opacity: 0;
+		padding:0;
+		position: absolute;
+		right: 9999rem;
+		top: calc(100% + 2rem);
+		transition: opacity 0.15s linear, transform 0.15s linear, right 0s 0.15s;
+		transform: translateY(0.6rem);
+		width: 20rem;
+		z-index: 1;
+	}
+	.sitenav ul li.menu-item-has-children:hover > ul,
+	.sitenav ul li.menu-item-has-children:focus > ul,
+	.sitenav ul li.menu-item-has-children.focus > ul {
+		left: 0;
+		opacity: 1;
+		transform: translateY(0);
+		transition: opacity 0.15s linear, transform 0.15s linear;
+		background-color:#000000 !important;
+		top:0;
+		position: relative;
+	}
+    .sitenav ul li a {
+        padding: 5px 10px;
+        display: block;
+        color: #ffffff !important;
+		text-align:left;
+    }
+    .sitenav ul li a:hover {
+        color: #ffffff !important;
+    }
+    .sitenav ul li ul,
+    .sitenav ul li ul ul {
+        display: block !important;
+    }
+    .sitenav ul li ul li a:before {
+        content: "\00BB \00a0";
+    }
+    .sitenav ul li ul li a {
+        padding-left: 20px !important;
+    }
+    .sitenav ul li ul li ul li a {
+        padding-left: 30px !important;
+    }
+	.sitenav ul li.current_page_item a{
+		background-color:transparent !important;
+	}
+	.sitenav ul li:hover,
+	.sitenav ul li.current_page_item{
+		background-color:inherit !important;
+	}
+    /******************************
+    ** Slider CSS
+    ******************************/
+	.massage-slider{
+		min-height: auto;
+	}
+    #theme-slider{
+        text-align: center;
+    }
+    #theme-slider .nivo-caption{
+        width: 76%;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+    }
+    #theme-slider .inner-caption h2{
+        font-size: 20px;
+        margin-bottom: 15px;
+		line-height: normal;
+    }
+    #theme-slider .inner-caption p{
+        display: none;
+    }
+    #theme-slider .inner-caption .sliderbtn{
+        padding: 8px 16px;
+        font-size: 14px;
+		margin-top: 0;
+    }
+    #theme-slider .nivo-controlNav{
+        display: none;
+    }
+
+    /******************************
+    ** Sections CSS
+    ******************************/
+    .col{
+		margin: 0 0 50px !important;
+	}
+	.featured-section{
+		padding: 50px 0;
+	}
+	.introduction .thumb,
+	.introduction .intro-content{
+		width: 100%;
+	}
+	.introduction .thumb{
+		margin-bottom: 30px;
+	}
+	.introduction .intro-content{
+		padding: 1.5em;
+	}
+
+    /* ------ Extra ------ */
+    
+    #sitemain iframe {
+        max-width: 100%;
+        height: auto;
+    }
+    /* --------- Pages ------- */
+    
+    .content-area {
+        width: 95%;
+        margin: 0 auto;
+        padding: 50px 0;
+    }
+    .site-main {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        float: none;
+    }
+    #sidebar {
+        width: auto;
+        margin: 60px 0 0;
+        padding: 0;
+        float: none;
+    }
+    .nivo-directionNav a {
+        top: 36% !important;
+    }
+	section{
+		padding:0;
+	}
+	.main-container{
+		margin-top:0;
+	}
+}
+/* Mobile Landscape View */
+
+@media screen and (max-width: 719px) and (min-width: 480px) {
+    * {
+        box-sizing: border-box;
+    }
+	.container {
+        width: 95%;
+        display: inherit !important;
+    }
+	
+	.header .flex-box {
+		flex-direction: column;
+		padding-bottom: 15px;
+	}
+	
+
+    /******************************
+    ** Navigation CSS
+    ******************************/
+	#navigation{
+		background-color: transparent !important;
+		margin-bottom: 10px;
+	}
+    .toggle {
+        display: block;
+    }
+    .toggle a {
+        width: 100%;
+        color: #ffffff;
+        background: url(../images/mobile_nav_right.png) no-repeat right center #373a3f;
+        padding: 10px 10px;
+        margin-top: 20px;
+        font-size: 16px;
+    }
+    .toggle a:hover {
+        color: #ffffff !important;
+    }
+    .toggle a.active {
+        color: #ffffff;
+    }
+    .sitenav {
+        display: none;
+		margin-top:0;
+		width:100%;
+    }
+    .sitenav ul {
+        background: #000000;
+        color: #000;
+        width: 100%;
+        float: none;
+        margin-top: 0;
+    }
+    .sitenav ul li {
+        border-top: 1px #303030 solid;
+        display: block;
+        float: none;
+        text-align: left;
+    }
+	.sitenav ul li ul {
+		color: #fff;
+		opacity: 0;
+		padding:0;
+		position: absolute;
+		right: 9999rem;
+		top: calc(100% + 2rem);
+		transition: opacity 0.15s linear, transform 0.15s linear, right 0s 0.15s;
+		transform: translateY(0.6rem);
+		width: 20rem;
+		z-index: 1;
+	}
+	.sitenav ul li.menu-item-has-children:hover > ul,
+	.sitenav ul li.menu-item-has-children:focus > ul,
+	.sitenav ul li.menu-item-has-children.focus > ul {
+		left: 0;
+		opacity: 1;
+		transform: translateY(0);
+		transition: opacity 0.15s linear, transform 0.15s linear;
+		background-color:#303030;
+		top:0;
+		position: relative;
+	}
+    .sitenav ul li a {
+        padding: 5px 10px;
+        display: block;
+        color: #ffffff !important;
+		text-align:left !important;
+    }
+    .sitenav ul li a:hover {
+        color: #ffffff !important;
+    }
+    .sitenav ul li ul,
+    .sitenav ul li ul ul {
+        display: block !important;
+    }
+    .sitenav ul li ul li a:before {
+        content: "\00BB \00a0";
+    }
+    .sitenav ul li ul li a {
+        padding-left: 20px !important;
+    }
+    .sitenav ul li ul li ul li a {
+        padding-left: 30px !important;
+    }
+	.sitenav ul li.current_page_item a{
+		background-color:transparent !important;
+	}
+	.sitenav ul li:hover,
+	.sitenav ul li.current_page_item{
+		background-color:inherit !important;
+	}
+    /******************************
+    ** Slider CSS
+    ******************************/
+    #theme-slider{
+        text-align: center;
+    }
+    #theme-slider .nivo-caption{
+        width: 76%;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+    }
+    #theme-slider .inner-caption h2{
+        font-size: 30px;
+        margin-bottom: 15px;
+		padding-bottom: 0;
+    }
+    #theme-slider .inner-caption p{
+        display: none;
+    }
+    #theme-slider .inner-caption .sliderbtn{
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+    #theme-slider .nivo-controlNav{
+        display: none;
+    }
+    /******************************
+    ** Sections CSS
+    ******************************/
+    .col{
+		margin: 0 0 50px !important;
+	}
+	.featured-section{
+		padding: 50px 0;
+	}
+	.introduction .thumb,
+	.introduction .intro-content{
+		width: 100%;
+	}
+	.introduction .thumb{
+		margin-bottom: 30px;
+	}
+	.introduction .intro-content{
+		padding: 1.5em;
+	}
+	
+    /* ------ Extra ------ */
+    
+    #sitemain iframe {
+        max-width: 100%;
+        height: auto;
+    }
+    /* --------- Pages ------- */
+    
+    .content-area {
+        width: auto;
+        margin: 0 20px;
+        padding: 50px 0;
+    }
+    .site-main {
+        width: auto;
+        margin: 0;
+        padding: 0;
+        float: none;
+    }
+    #sidebar {
+        width: auto;
+        margin: 60px 0 0;
+        padding: 0;
+        float: none;
+    }
+    .nivo-directionNav a {
+        top: 36% !important;
+    }
+	section{
+		padding:0;
+	}
+	.main-container{
+		margin-top:0;
+	}
+}
+
+@media screen and (max-width: 899px) and (min-width: 320px) {
+    .cat_comments {
+        height: auto;
+    }
+}
+/* Tablet View */
+
+@media screen and (max-width: 999px) and (min-width: 720px) {
+    * {
+        box-sizing: border-box;
+    }
+	.container{
+        width: 95%;
+        margin: 0 auto;
+    }
+
+    /******************************
+    ** Header CSS
+    ******************************/
+	.site-logo{
+		text-align: center;
+	}
+    p.site-description{
+        font-size: .8rem;
+    }
+
+    /******************************
+    ** Navifation CSS
+    ******************************/
+	#navigation{
+		background-color: transparent !important;
+		padding-bottom: 10px;
+	}
+    .toggle {
+        display: block;
+    }
+    .toggle a {
+        width: 100%;
+        color: #ffffff;
+        background: url(../images/mobile_nav_right.png) no-repeat right center #373a3f;
+        padding: 10px 10px;
+        margin-top: 20px;
+        font-size: 16px;
+    }
+    .toggle a:hover {
+        color: #ffffff !important;
+    }
+    .toggle a.active {
+        color: #ffffff;
+    }
+    .sitenav {
+        display: none;
+		float:none;
+		margin: 0;
+    }
+    .sitenav ul {
+        background: #000000;
+        color: #000;
+        width: 100%;
+        float: none;
+        margin-top: 0;
+    }
+    .sitenav ul li {
+        border-top: 1px #303030 solid;
+        display: block;
+        float: none;
+        text-align: left;
+    }
+	.sitenav ul li ul {
+		color: #fff;
+		opacity: 0;
+		padding:0;
+		position: absolute;
+		right: 9999rem;
+		top: calc(100% + 2rem);
+		transition: opacity 0.15s linear, transform 0.15s linear, right 0s 0.15s;
+		transform: translateY(0.6rem);
+		width: 20rem;
+		z-index: 1;
+	}
+	.sitenav ul li.menu-item-has-children:hover > ul,
+	.sitenav ul li.menu-item-has-children:focus > ul,
+	.sitenav ul li.menu-item-has-children.focus > ul {
+		left: 0;
+		opacity: 1;
+		transform: translateY(0);
+		transition: opacity 0.15s linear, transform 0.15s linear;
+		background-color: transparent !important;
+		top:0;
+		position: relative;
+	}
+    .sitenav ul li a {
+        padding: 5px 10px;
+        display: block;
+        color: #ffffff !important;
+		text-align:left;
+    }
+    .sitenav ul li a:hover {
+        color: #ffffff !important;
+    }
+    .sitenav ul li ul li a:before {
+        content: "\00BB \00a0";
+    }
+    .sitenav ul li ul li a {
+        padding-left: 20px !important;
+    }
+    .sitenav ul li ul li ul li a {
+        padding-left: 30px !important;
+    }
+	.sitenav ul li:hover,
+	.sitenav ul li.current_page_item{
+		background-color:inherit !important;
+	}
+
+    /******************************
+    ** Slider CSS
+    ******************************/
+    #theme-slider .nivo-caption {
+		width: 630px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+    }
+    #theme-slider .inner-caption h2{
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+    #theme-slider .inner-caption .sliderbtn{
+        padding: 8px 16px;
+        font-size: 12px;
+		margin-top: 0;
+    }
+	#theme-slider .nivo-controlNav{
+		display: none;
+	}
+
+    /******************************
+    ** Section CSS
+    ******************************/
+	.introduction .thumb{
+		width: 45%;
+	}
+	.introduction .intro-content,
+	.introduction .thumb{
+		width: 100%;
+	}
+
+    /* --------- Pages ------- */
+    .content-area {
+        width: auto;
+        margin: 0 20px;
+        padding: 50px 0;
+    }
+    .site-main {
+        width: 60%;
+        margin: 0;
+        padding: 0;
+        float: left;
+    }
+    #sidebar {
+        width: 35%;
+        margin: 0;
+        padding: 0;
+        float: right;
+    }
+	section{
+		padding-bottom:0;
+	}
+	.main-container{
+		margin-top:0;
+	}
+}
+@media screen and (min-width: 1000px) {
+    .sitenav ul li ul li {
+        display: block;
+        position: relative;
+        float: none;
+    }
+    .sitenav ul li ul li a {
+        display: block;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px #313131 solid;
+    }
+    .site-main {
+        width: 70%;
+    }
+}
+@media screen and (min-width: 1000px) and (max-width: 1159px) {
+    .container {
+        width: 95%;
+    }
+	.sitenav ul{
+		font-size:12px;
+	}
+	.sitenav ul li{
+		letter-spacing: 1px;
+	}
+	.sitenav ul li a{
+		padding: 20px 12px;
+	}
+	.sitenav ul li:hover > ul{
+		top:52px;
+	}
+    .cat_comments {
+        left: 35px;
+        width: 25%;
+    }
+    .content-area {
+        width: 95%;
+	}
+}

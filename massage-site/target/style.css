@@ -1,0 +1,77 @@
+/* style.css - Modern responsive layout */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f9f9f9;
+  color: #222;
+}
+.site-header {
+  display: flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.logo {
+  height: 60px;
+  margin-right: 1.5rem;
+}
+.site-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+.image-panels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+}
+.panel {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s;
+}
+.panel:hover {
+  transform: translateY(-4px) scale(1.03);
+}
+.panel img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+.panel-caption {
+  padding: 1rem;
+  font-size: 1.1rem;
+  text-align: center;
+}
+footer {
+  text-align: center;
+  padding: 1.5rem 0;
+  background: #f1f1f1;
+  font-size: 1rem;
+  color: #888;
+  margin-top: 2rem;
+}
+@media (max-width: 600px) {
+  .site-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  .logo {
+    margin-bottom: 0.5rem;
+  }
+  .image-panels {
+    padding: 1rem;
+    gap: 1rem;
+  }
+  .panel img {
+    height: 120px;
+  }
+}

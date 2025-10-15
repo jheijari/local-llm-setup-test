@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+/* style.css - Modern responsive layout for Hieroja Henna Julia */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f9f9f9;
+  color: #222;
+
+
+.site-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-bottom: none;
+  box-shadow: none;
+  padding: 2rem 0 1rem 0;
+  position: relative;
+}
+.site-header h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3rem;
+  font-weight: 400;
+  margin: 0;
+  letter-spacing: 2px;
+}
+.site-header .logo {
+  display: block;
+  margin: 0 auto 0.5rem auto;
+  height: 80px;
+}
+.booking-btn {
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+  background: none;
+  color: #d32f2f;
+  font-size: 1.1rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+.booking-btn i {
+  font-size: 1.7rem;
+}
+}
+.site-header {
+  display: flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.logo {
+  height: 60px;
+  margin-right: 1.5rem;
+}
+.site-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+/* Panel section styles for intro panels */
+.intro-panels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  background: #232323;
+  border-radius: 16px;
+  margin: 2rem auto;
+  max-width: 1200px;
+}
+.panel {
+  background: #232323;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  min-width: 0;
+}
+.panel h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 1.2rem 0 0.5rem 0;
+  text-align: center;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 2px;
+  text-decoration-color: #d32f2f;
+}
+.panel p, .panel ul {
+  font-size: 1.05rem;
+  text-align: center;
+  margin: 0.5rem 0 1.2rem 0;
+}
+.panel-link {
+  color: #fff;
+  text-decoration: underline;
+  font-weight: 500;
+  border-bottom: 2px solid #fff;
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.panel-link:hover {
+  color: #d32f2f;
+  border-color: #d32f2f;
+}
+.circle-img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 6px solid #232323;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  background: #fff;
+}
+.price-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.2rem 0;
+  font-size: 1.1rem;
+}
+.price-list li {
+  margin-bottom: 0.3rem;
+}
+footer {
+  text-align: center;
+  padding: 1.5rem 0;
+  background: #f1f1f1;
+  font-size: 1rem;
+  color: #888;
+  margin-top: 2rem;
+}
+@media (max-width: 700px) {
+  .site-header {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.2rem 0 0.5rem 0;
+  }
+  .site-header .logo {
+    margin-bottom: 0.5rem;
+    height: 60px;
+  }
+  .booking-btn {
+    right: 1rem;
+    top: 1rem;
+    font-size: 1rem;
+  }
+  .intro-panels {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+    gap: 1.2rem;
+  }
+  .circle-img {
+    width: 120px;
+    height: 120px;
+  }
+}

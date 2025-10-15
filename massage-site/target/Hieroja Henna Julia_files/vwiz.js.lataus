@@ -1,0 +1,233 @@
+(function() {
+
+  var shouldUseButton = function () {
+    var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+    if (iOS) return true;
+    return false;
+  };
+
+  var getQueryParameterByName = function ( name ) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)")
+      , results = regex.exec( location.search );
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  };
+
+  var getVelloMode = function () {
+    return ( document.getElementById('vello-wizard-sdk').getAttribute('data-mode') 
+      || getQueryParameterByName( 'vello-mode' )
+      || false )
+  };
+
+  var getSegmentMode = function () {
+
+    var velloWizardSdkEl = document.getElementById('vello-wizard-sdk')
+      , segmentAttr = false;
+    
+    if ( velloWizardSdkEl ) {
+      segmentAttr = velloWizardSdkEl.getAttribute('data-segment');
+    }
+
+    return segmentAttr || getQueryParameterByName( 'segment' ) || false;
+
+  };
+
+  var getMarketplaceMode = function () {
+    
+    var velloWizardSdkEl = document.getElementById('vello-wizard-sdk')
+      , marketplaceAttr = false;
+    
+    if ( velloWizardSdkEl ) {
+      marketplaceAttr = velloWizardSdkEl.getAttribute('data-marketplace');
+    }
+
+    return marketplaceAttr || getQueryParameterByName( 'marketplace' ) || false;
+
+  };
+
+  var getLanguageMode = function () {
+    
+    var velloWizardSdkEl = document.getElementById('vello-wizard-sdk')
+      , langAttr = false
+      , lang = ''
+      , segmentAttr = false
+      , segment = '';
+    
+    if ( velloWizardSdkEl ) {
+      langAttr = document.getElementById('vello-wizard-sdk').getAttribute('data-l');
+      segmentAttr = document.getElementById('vello-wizard-sdk').getAttribute('data-segment');
+    }
+
+    lang = langAttr || getQueryParameterByName( 'l' );
+    segment = segmentAttr || getQueryParameterByName( 'segment' );
+
+    switch ( lang ) {
+      case 'en': 
+      case 'sv': 
+      case 'fi': 
+      case 'fr': 
+      case 'de': 
+      case 'ru': return lang;
+      default: return false;
+    }
+
+  };
+
+  var solveDomainUrl = function () {
+    switch ( getVelloMode() ) {
+      case 'staging': return 'https://test.vello.fi/';
+      case 'local': return 'http://127.0.0.1:3000/';
+      case 'production':
+      default: return 'https://vello.fi/';
+    }
+  };
+
+  var domainUrl = solveDomainUrl();
+  var companyRef = document.getElementById('vello-wizard-sdk').getAttribute('data-c');
+  var companyUrl = domainUrl + companyRef;
+  var apiUrl = domainUrl + 'api/';
+
+  var solveVelloEl = function () {
+    var e = document.getElementById('vello-wizard');
+    if ( e === null ) return false;
+    return e;
+  };
+
+  var renderIframe = function () {
+    
+    var dv = solveVelloEl();
+    if ( !dv ) return false;
+
+    var hostUrlParam = 'h=' + encodeURIComponent( window.location.origin )
+      , langParam = getLanguageMode()
+      , segmentParam = getSegmentMode()
+      , marketplaceParam = getMarketplaceMode()
+      , langUrlParam = ( langParam ? '&l=' + langParam : '' )
+      , segmentUrlParam = ( segmentParam ? '&segment=' + segmentParam : '' )
+      , marketplaceUrlParam = ( marketplaceParam ? '&data-marketplace=1' : '' )
+      , eventMethod = window.addEventListener ? "addEventListener" : "attachEvent"
+      , eventer = window[eventMethod]
+      , messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message"
+      , cachedHeight = 0
+      , el = document.createElement( 'iframe' )
+      , iframeStyle = '';
+
+    iframeStyle += 'width: 100%; ';
+    iframeStyle += 'background: transparent; ';
+
+    el.style.cssText = iframeStyle;
+
+    el.setAttribute( 'title', solveIframeTitle() );
+    el.setAttribute( 'width', '100%' );
+    el.setAttribute( 'scrolling', 'no' );
+    el.setAttribute( 'frameBorder', '0' );
+
+    el.src = companyUrl + '/booking-wizard?' + hostUrlParam + langUrlParam + segmentUrlParam + marketplaceUrlParam;
+    dv.parentNode.replaceChild( el, dv );
+
+    eventer( messageEvent, e => {
+
+      if ( !e.data || !e.data.vwiz_height || e.origin !== 'https://pro.vello.fi' ) return false;
+
+      var iframeStyle = '';
+      iframeStyle += 'background: transparent; ';
+
+      if ( e.data.vwiz_height && cachedHeight < e.data.vwiz_height ) {
+        iframeStyle += 'height: ' + e.data.vwiz_height + 'px; ';
+      } else {
+        iframeStyle += 'transition: height .25s .25s; ';
+        iframeStyle += 'height: ' + e.data.vwiz_height + 'px; ';
+      }
+
+      el.style.cssText = iframeStyle;
+      cachedHeight = e.data.vwiz_height;
+
+    }, false);
+      
+  };
+
+  var solveUserLanguage = function () {
+    var lang = window.navigator.userLanguage || window.navigator.language;
+    if ( lang.indexOf( 'fi' ) > -1 ) return 'fi';
+    if ( lang.indexOf( 'sv' ) > -1 ) return 'sv';
+    if ( lang.indexOf( 'fr' ) > -1 ) return 'fr';
+    if ( lang.indexOf( 'de' ) > -1 ) return 'de';
+    return 'en';
+  };
+
+  var solveIframeTitle = function () {
+    var lang = solveUserLanguage();
+    switch ( lang ) {
+      case 'fi': return 'Ajanvaraus';
+      case 'fr': return 'Prendre un rendez-vous';
+      case 'de': return 'Einen Termin vereinbaren';
+      default: return 'Online booking';
+    }
+  };
+
+  var solveButtonText = function () {
+    var lang = solveUserLanguage();
+    switch ( lang ) {
+      case 'fi': return 'Varaa aika';
+      case 'fr': return 'Prendre un rendez-vous';
+      case 'de': return 'Einen Termin vereinbaren';
+      default: return 'Book an appointment';
+    }
+  };
+
+  var renderBookingButton = function () {
+
+    var el = solveVelloEl();
+    if ( !el ) return false;
+
+    var stylesWrapper = 'style="'
+      + 'text-align: center;'
+      + '"';
+    
+    var stylesDiv = 'style="'
+      + 'display: inline-block;'
+      + 'text-align: center;'
+      + '"';
+
+    var stylesBtn = 'style="'
+      + 'display: block;'
+      + 'padding: 1rem 1.5rem;'
+      + 'font-family: Helvetica, Arial, sans-serif;'
+      + 'text-decoration: none;'
+      + 'color: #000;'
+      + 'background: #f9f9f9;'
+      + 'border-radius: 3px;'
+      + 'box-shadow: 0 0 0 0.5px rgba(50,50,50,.12), 0 2px 5px 0 rgba(50,50,50,.12), 0 9px 20px -11px rgba(0,0,0,.07), 0 2px 2px 0 rgba(0,0,0,.03);'
+      + 'font-size: 1rem;'
+      + 'font-weight: 400;'
+      + 'text-align: center;'
+      + '"';
+
+    var stylesDetail = 'style="'
+      + 'display: block;'
+      + 'padding: 1rem .25rem;'        
+      + 'font-family: Helvetica, Arial, sans-serif;'
+      + 'text-decoration: none;'
+      + 'color: #777;'
+      + 'background: none;'
+      + 'font-size: .75rem;'
+      + 'text-align: center;'
+      + '"';
+
+    var html = ''
+      + '<div ' + stylesWrapper + '>'
+        + '<div ' + stylesDiv + '>'
+          + '<a href="' + companyUrl + '"' + stylesBtn + ' >' + solveButtonText() + '</a>'
+          + '<a href="' + companyUrl + '"' + stylesDetail + ' >' + companyUrl + '</a>'
+        + '</div>';
+      + '</div>';
+
+     el.innerHTML = html;
+
+  };
+
+  renderIframe();
+  
+  //renderBookingButton();
+
+}());
